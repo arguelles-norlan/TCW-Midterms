@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TCW Practice Exam – Lesson 3</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="text-white min-h-screen p-4 md:p-8">
+    <!-- Back Button -->
+    <div class="max-w-4xl mx-auto mb-4">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-slate-400 hover:text-violet-300 transition-colors text-sm"
+      >
+        <span>←</span> Back to Exams
+      </a>
+    </div>
+
+    <!-- Header -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <div
+        class="glass rounded-2xl p-6 md:p-8 text-center relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-violet-600/20 to-indigo-600/10 pointer-events-none"
+        ></div>
+        <div class="relative z-10">
+          <span
+            class="badge uppercase tracking-widest text-violet-300 bg-violet-900/40 px-3 py-1 rounded-full"
+            >TCW Practice Exam</span
+          >
+          <h1
+            class="text-3xl md:text-4xl font-bold mt-3 mb-1 bg-gradient-to-r from-violet-300 via-purple-200 to-indigo-300 bg-clip-text text-transparent"
+          >
+            Lesson 3 Review
+          </h1>
+          <p class="text-slate-400 text-sm">
+            Regionalism &amp; International Relations
+          </p>
+          <div class="flex justify-center gap-6 mt-5 text-sm">
+            <div class="text-center">
+              <div
+                class="text-2xl font-bold text-violet-300"
+                id="total-questions"
+              >
+                30
+              </div>
+              <div class="text-slate-500 text-xs">Questions</div>
+            </div>
+            <div class="w-px bg-white/10"></div>
+            <div class="text-center">
+              <div
+                class="text-2xl font-bold text-emerald-400"
+                id="score-display"
+              >
+                0
+              </div>
+              <div class="text-slate-500 text-xs">Correct</div>
+            </div>
+            <div class="w-px bg-white/10"></div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-sky-400" id="pct-display">
+                0%
+              </div>
+              <div class="text-slate-500 text-xs">Score</div>
+            </div>
+          </div>
+          <!-- Progress -->
+          <div class="mt-5 h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div
+              class="progress-bar h-full rounded-full transition-all duration-500"
+              id="progress-bar"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div class="text-xs text-slate-500 mt-1" id="progress-label">
+            0 of 30 answered
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div
+      class="max-w-4xl mx-auto mb-6 flex gap-2 p-1 glass rounded-xl w-fit mx-auto"
+    >
+      <button
+        onclick="switchTab('part1')"
+        id="tab-part1"
+        class="tab-btn active px-5 py-2 rounded-lg text-sm font-medium transition-all"
+      >
+        Part I – Identification
+      </button>
+      <button
+        onclick="switchTab('part2')"
+        id="tab-part2"
+        class="tab-btn px-5 py-2 rounded-lg text-sm font-medium transition-all text-slate-400"
+      >
+        Part II – Fill in the Blanks
+      </button>
+    </div>
+
+    <!-- Part I -->
+    <div id="part1" class="max-w-4xl mx-auto space-y-3">
+      <div class="glass rounded-xl px-5 py-3 flex items-center gap-3 mb-4">
+        <span
+          class="w-6 h-6 bg-violet-700 rounded-full flex items-center justify-center text-xs font-bold"
+          >I</span
+        >
+        <p class="text-sm text-slate-300">
+          Identify the term or concept described in each statement based on Lesson 3 notes.
+        </p>
+      </div>
+    </div>
+
+    <!-- Part II -->
+    <div id="part2" class="max-w-4xl mx-auto space-y-3 hidden">
+      <div class="glass rounded-xl px-5 py-3 flex items-center gap-3 mb-4">
+        <span
+          class="w-6 h-6 bg-indigo-700 rounded-full flex items-center justify-center text-xs font-bold"
+          >II</span
+        >
+        <p class="text-sm text-slate-300">
+          Provide the missing word or phrase to complete each statement based on the provided notes.
+        </p>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div
+      class="max-w-4xl mx-auto mt-8 flex flex-col sm:flex-row gap-3 justify-center"
+    >
+      <button
+        onclick="checkAnswers()"
+        class="px-8 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-violet-900/40 hover:shadow-violet-700/40"
+      >
+        ✅ Check Answers
+      </button>
+      <button
+        onclick="revealAll()"
+        class="px-8 py-3 glass hover:bg-white/10 rounded-xl font-semibold text-sm transition-all text-sky-300"
+      >
+        👁 Reveal All Answers
+      </button>
+      <button
+        onclick="resetAll()"
+        class="px-8 py-3 glass hover:bg-white/10 rounded-xl font-semibold text-sm transition-all text-slate-400"
+      >
+        🔄 Reset
+      </button>
+    </div>
+
+    <!-- Result Modal -->
+    <div
+      id="result-modal"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="result-popup glass rounded-2xl p-8 max-w-sm w-full mx-4 text-center border border-violet-500/30"
+      >
+        <div class="text-5xl mb-3" id="result-emoji">🎉</div>
+        <h2 class="text-2xl font-bold mb-1" id="result-title">Great Job!</h2>
+        <p class="text-slate-400 text-sm mb-4" id="result-subtitle"></p>
+        <div
+          class="text-5xl font-black bg-gradient-to-r from-violet-300 to-indigo-300 bg-clip-text text-transparent mb-6"
+          id="result-score"
+        ></div>
+        <button
+          onclick="
+            document.getElementById('result-modal').classList.add('hidden')
+          "
+          class="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-xl text-sm font-semibold w-full"
+        >
+          Continue Reviewing
+        </button>
+      </div>
+    </div>
+
+    <div class="h-16"></div>
+
+    <script>
+      const questions = [
+        // Part 1 (1-20)
+        {
+          id: 1,
+          part: 1,
+          text: "The category of countries characterized by developed economies and high standards of living.",
+          answer: "Global North",
+        },
+        {
+          id: 2,
+          part: 1,
+          text: "Developing countries with lower income, limited industrialization, and significant economic challenges.",
+          answer: "Global South",
+        },
+        {
+          id: 3,
+          part: 1,
+          text: "The formation of regions based on shared characteristics and cooperation within a specific geographic area.",
+          answer: "Regionalism",
+        },
+        {
+          id: 4,
+          part: 1,
+          text: "The concept that regions are grouped based on common traits like geography, culture, economy, or politics.",
+          answer: "Region",
+        },
+        {
+          id: 5,
+          part: 1,
+          text: "The specific term for the regional concentration of economic flows.",
+          answer: "Regionalization",
+        },
+        {
+          id: 6,
+          part: 1,
+          text: "A political process characterized by policy coordination and cooperation among countries.",
+          answer: "Regionalism",
+        },
+        {
+          id: 7,
+          part: 1,
+          text: "An example of a military alliance formed for the purpose of defense and security.",
+          answer: "NATO",
+        },
+        {
+          id: 8,
+          part: 1,
+          text: "An organization mentioned in the notes as an example of countries pooling resources for economic cooperation.",
+          answer: "OPEC",
+        },
+        {
+          id: 9,
+          part: 1,
+          text: "A movement (abbreviated) aimed at protecting a country's independence from the pressures of superpower politics.",
+          answer: "NAM (Non-Aligned Movement)",
+        },
+        {
+          id: 10,
+          part: 1,
+          text: "Also known as 'new regionalism,' this involves cooperation that is not led by governments.",
+          answer: "Non-state regionalism",
+        },
+        {
+          id: 11,
+          part: 1,
+          text: "These are associations that form based on common motivations regardless of their geographic proximity.",
+          answer: "Issue-based associations",
+        },
+        {
+          id: 12,
+          part: 1,
+          text: "A political approach that divides people into 'pure people' versus the 'corrupt elite.'",
+          answer: "Populism",
+        },
+        {
+          id: 13,
+          part: 1,
+          text: "A specific challenge to regionalism where countries prioritize their own national interests over collective cooperation.",
+          answer: "Militant Nationalism",
+        },
+        {
+          id: 14,
+          part: 1,
+          text: "The historical event/term used to describe Britain's exit from the European Union due to economic implications.",
+          answer: "Brexit",
+        },
+        {
+          id: 15,
+          part: 1,
+          text: "The tension that arises when a country must choose between protecting its own national authority and maintaining regional peace.",
+          answer: "Sovereignty vs. Regional Stability",
+        },
+        {
+          id: 16,
+          part: 1,
+          text: "The specific territorial dispute mentioned as an example of sovereignty vs. regional stability.",
+          answer: "China and Philippines territorial dispute",
+        },
+        {
+          id: 17,
+          part: 1,
+          text: "A country mentioned that may not favor democratic-style decision-making because it slows economic progress.",
+          answer: "Singapore / China / Russia",
+        },
+        {
+          id: 18,
+          part: 1,
+          text: "Non-state regional groups that focus on specific issues like climate change or human rights.",
+          answer: "Specialized causes",
+        },
+        {
+          id: 19,
+          part: 1,
+          text: "Non-state regional groups that focus on broader concerns like development or global cooperation.",
+          answer: "General causes",
+        },
+        {
+          id: 20,
+          part: 1,
+          text: "The type of decision-making style that some authoritarian-leaning states avoid in favor of faster economic progress.",
+          answer: "Democratic-style",
+        },
+        // Part 2 (21-30)
+        {
+          id: 21,
+          part: 2,
+          text: "The division between the Global North and South reflects inequality in wealth, ___ and access to resources.",
+          answer: "power",
+        },
+        {
+          id: 22,
+          part: 2,
+          text: "Forming regionalism is not a 'natural process' but is inspired by ___ issues.",
+          answer: "social",
+        },
+        {
+          id: 23,
+          part: 2,
+          text: "One reason to form regions is to ___ economic crises, similar to how the IMF interacts with ASEAN.",
+          answer: "mitigate",
+        },
+        {
+          id: 24,
+          part: 2,
+          text: "Non-state regionalism is often ___ in scale compared to established alliances created before them.",
+          answer: "smaller / tiny",
+        },
+        {
+          id: 25,
+          part: 2,
+          text: "Unlike government-led alliances, non-state regionalism may have a relatively ___ budget source.",
+          answer: "difficult",
+        },
+        {
+          id: 26,
+          part: 2,
+          text: "Resurgence of militant ___ and populism is a major contemporary challenge to regional cooperation.",
+          answer: "nationalism",
+        },
+        {
+          id: 27,
+          part: 2,
+          text: "Populism is described as an ___ approach that divides the people from the elite.",
+          answer: "antagonistic",
+        },
+        {
+          id: 28,
+          part: 2,
+          text: "Regarding the China-Philippine dispute, fellow ASEAN members preferred ___ over confrontation.",
+          answer: "diplomacy",
+        },
+        {
+          id: 29,
+          part: 2,
+          text: "___ affects the level of trust and cooperation among member countries in a region.",
+          answer: "Instability",
+        },
+        {
+          id: 30,
+          part: 2,
+          text: "Countries have differing ___ of how regionalism should work, leading to conflict in decision-making styles.",
+          answer: "visions",
+        },
+      ];
+
+      function normalize(str) {
+        return str
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9\s]/g, "")
+          .replace(/\s+/g, " ");
+      }
+
+      function isCorrect(userAnswer, correctAnswer) {
+        const u = normalize(userAnswer);
+        const c = normalize(correctAnswer);
+        if (u === c) return true;
+        // Flexible: check if answer contains the key term
+        const tokens = c.split(" ");
+        const keyTokens = tokens.filter((t) => t.length > 3);
+        if (keyTokens.length === 0) return false;
+        const matchCount = keyTokens.filter((t) => u.includes(t)).length;
+        return matchCount >= Math.ceil(keyTokens.length * 0.7);
+      }
+
+      function buildCards() {
+        ["part1", "part2"].forEach((partId) => {
+          const container = document.getElementById(partId);
+          // Remove old cards (keep the header div)
+          const header = container.firstChild;
+          container.innerHTML = "";
+          container.appendChild(header);
+
+          const partNum = partId === "part1" ? 1 : 2;
+          questions
+            .filter((q) => q.part === partNum)
+            .forEach((q) => {
+              const card = document.createElement("div");
+              card.className = "q-card glass rounded-xl p-4 md:p-5";
+              card.id = `card-${q.id}`;
+
+              if (q.part === 1) {
+                // Part 1: Traditional layout with answer below
+                card.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="min-w-[1.8rem] h-7 w-7 flex items-center justify-center rounded-lg text-xs font-bold
+              bg-violet-900/60 text-violet-300">
+              ${q.id}
+            </span>
+            <div class="flex-1">
+              <p class="text-sm text-slate-200 leading-relaxed mb-3">${q.text}</p>
+              <div class="flex gap-2 items-center">
+                <input
+                  id="input-${q.id}"
+                  type="text"
+                  placeholder="Your answer..."
+                  class="answer-box flex-1 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500"
+                  oninput="updateProgress()"
+                  onkeydown="if(event.key==='Enter') focusNext(${q.id})"
+                />
+                <div id="feedback-${q.id}" class="hidden text-lg"></div>
+              </div>
+              <div id="correct-ans-${q.id}" class="hidden mt-2 text-xs px-3 py-1.5 rounded-lg bg-sky-900/30 border border-sky-500/20 text-sky-300">
+                <span class="text-sky-500 font-semibold">Answer:</span> ${q.answer}
+              </div>
+            </div>
+          </div>
+        `;
+              } else {
+                // Part 2: Inline input within text
+                const [before, after] = q.text.split("___");
+                card.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="min-w-[1.8rem] h-7 w-7 flex items-center justify-center rounded-lg text-xs font-bold
+              bg-indigo-900/60 text-indigo-300">
+              ${q.id}
+            </span>
+            <div class="flex-1">
+              <p class="text-sm text-slate-200 leading-relaxed mb-3">
+                ${before}<input
+                  id="input-${q.id}"
+                  type="text"
+                  placeholder=""
+                  class="inline-answer-box placeholder-slate-600"
+                  oninput="updateProgress()"
+                  onkeydown="if(event.key==='Enter') focusNext(${q.id})"
+                />${after}<span id="feedback-${q.id}" class="hidden text-base ml-1"></span>
+              </p>
+              <div id="correct-ans-${q.id}" class="hidden mt-2 text-xs px-3 py-1.5 rounded-lg bg-sky-900/30 border border-sky-500/20 text-sky-300">
+                <span class="text-sky-500 font-semibold">Answer:</span> ${q.answer}
+              </div>
+            </div>
+          </div>
+        `;
+              }
+              container.appendChild(card);
+            });
+        });
+      }
+
+      function focusNext(currentId) {
+        const next = document.getElementById(`input-${currentId + 1}`);
+        if (next) next.focus();
+      }
+
+      function updateProgress() {
+        let answered = 0;
+        questions.forEach((q) => {
+          const inp = document.getElementById(`input-${q.id}`);
+          if (inp && inp.value.trim() !== "") answered++;
+        });
+        const pct = Math.round((answered / questions.length) * 100);
+        document.getElementById("progress-bar").style.width = pct + "%";
+        document.getElementById("progress-label").textContent =
+          `${answered} of ${questions.length} answered`;
+      }
+
+      function checkAnswers() {
+        let correct = 0;
+        questions.forEach((q) => {
+          const inp = document.getElementById(`input-${q.id}`);
+          const fb = document.getElementById(`feedback-${q.id}`);
+          const ca = document.getElementById(`correct-ans-${q.id}`);
+          if (!inp || inp.value.trim() === "") return;
+
+          // Remove all classes and re-evaluate
+          inp.classList.remove("correct", "wrong", "revealed");
+          fb.classList.remove("hidden");
+
+          if (isCorrect(inp.value, q.answer)) {
+            inp.classList.add("correct");
+            fb.textContent = "✅";
+            ca.classList.add("hidden");
+            correct++;
+          } else {
+            inp.classList.add("wrong");
+            fb.textContent = "❌";
+            ca.classList.remove("hidden");
+          }
+        });
+
+        const pct = Math.round((correct / questions.length) * 100);
+        document.getElementById("score-display").textContent = correct;
+        document.getElementById("pct-display").textContent = pct + "%";
+
+        // Show modal
+        const modal = document.getElementById("result-modal");
+        document.getElementById("result-score").textContent =
+          `${correct} / ${questions.length}`;
+        document.getElementById("result-subtitle").textContent =
+          `You scored ${pct}%`;
+
+        let emoji, title;
+        if (pct >= 90) {
+          emoji = "🏆";
+          title = "Excellent Work!";
+        } else if (pct >= 75) {
+          emoji = "🎉";
+          title = "Great Job!";
+        } else if (pct >= 60) {
+          emoji = "📚";
+          title = "Keep Studying!";
+        } else {
+          emoji = "💪";
+          title = "Don't Give Up!";
+        }
+
+        document.getElementById("result-emoji").textContent = emoji;
+        document.getElementById("result-title").textContent = title;
+        modal.classList.remove("hidden");
+      }
+
+      function revealAll() {
+        questions.forEach((q) => {
+          const inp = document.getElementById(`input-${q.id}`);
+          const fb = document.getElementById(`feedback-${q.id}`);
+          const ca = document.getElementById(`correct-ans-${q.id}`);
+          if (!inp) return;
+          inp.classList.remove("correct", "wrong");
+          inp.classList.add("revealed");
+          inp.value = q.answer;
+          fb.classList.remove("hidden");
+          fb.textContent = "💡";
+          ca.classList.add("hidden");
+        });
+        updateProgress();
+      }
+
+      function resetAll() {
+        questions.forEach((q) => {
+          const inp = document.getElementById(`input-${q.id}`);
+          const fb = document.getElementById(`feedback-${q.id}`);
+          const ca = document.getElementById(`correct-ans-${q.id}`);
+          if (!inp) return;
+          inp.value = "";
+          inp.classList.remove("correct", "wrong", "revealed");
+          fb.classList.add("hidden");
+          fb.textContent = "";
+          ca.classList.add("hidden");
+        });
+        document.getElementById("score-display").textContent = "0";
+        document.getElementById("pct-display").textContent = "0%";
+        document.getElementById("progress-bar").style.width = "0%";
+        document.getElementById("progress-label").textContent =
+          "0 of 30 answered";
+      }
+
+      function switchTab(tab) {
+        document
+          .getElementById("part1")
+          .classList.toggle("hidden", tab !== "part1");
+        document
+          .getElementById("part2")
+          .classList.toggle("hidden", tab !== "part2");
+        document
+          .getElementById("tab-part1")
+          .classList.toggle("active", tab === "part1");
+        document
+          .getElementById("tab-part2")
+          .classList.toggle("active", tab === "part2");
+        document
+          .getElementById("tab-part1")
+          .classList.toggle("text-slate-400", tab !== "part1");
+        document
+          .getElementById("tab-part2")
+          .classList.toggle("text-slate-400", tab !== "part2");
+      }
+
+      buildCards();
+    </script>
+  </body>
+</html>
