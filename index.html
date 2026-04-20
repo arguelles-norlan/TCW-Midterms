@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TCW Practice Exams</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .exam-card {
+        transition: all 0.3s ease;
+      }
+      .exam-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(124, 58, 237, 0.3);
+      }
+    </style>
+  </head>
+  <body class="text-white min-h-screen p-4 md:p-8">
+    <!-- Header -->
+    <div class="max-w-6xl mx-auto mb-12">
+      <div
+        class="glass rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-violet-600/20 to-indigo-600/10 pointer-events-none"
+        ></div>
+        <div class="relative z-10">
+          <span
+            class="badge uppercase tracking-widest text-violet-300 bg-violet-900/40 px-3 py-1 rounded-full"
+          >
+            TCW Practice Exams
+          </span>
+          <h1
+            class="text-4xl md:text-5xl font-bold mt-4 mb-2 bg-gradient-to-r from-violet-300 via-purple-200 to-indigo-300 bg-clip-text text-transparent"
+          >
+            Select Your Practice Exam
+          </h1>
+          <p class="text-slate-400 text-base md:text-lg">
+            Choose a lesson and unit to begin reviewing
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Selection Grid -->
+    <div class="max-w-6xl mx-auto">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+      >
+        <!-- Lesson 1 -->
+        <a href="tcw-lesson1.html" class="exam-card rounded-xl">
+          <div
+            class="glass rounded-xl p-6 h-full flex flex-col justify-between"
+          >
+            <div
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center text-xl font-bold mb-3"
+              >
+                1
+              </div>
+              <h2 class="text-xl font-bold mb-2">Lesson 1 Unit 2</h2>
+              <p class="text-slate-400 text-sm">
+                Advanced Globalization Concepts
+              </p>
+            </div>
+            <div
+              class="mt-4 flex items-center text-indigo-300 text-sm font-semibold"
+            >
+              Start Exam <span class="ml-2">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Lesson 2 -->
+        <a href="tcw-lesson2.html" class="exam-card rounded-xl">
+          <div
+            class="glass rounded-xl p-6 h-full flex flex-col justify-between"
+          >
+            <div>
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center text-xl font-bold mb-3"
+              >
+                2
+              </div>
+              <h2 class="text-xl font-bold mb-2">Lesson 2 Unit 2</h2>
+              <p class="text-slate-400 text-sm">Economic Systems and Trade</p>
+            </div>
+            <div
+              class="mt-4 flex items-center text-pink-300 text-sm font-semibold"
+            >
+              Start Exam <span class="ml-2">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Lesson 3 -->
+        <a href="tcw-lesson3.html" class="exam-card rounded-xl">
+          <div
+            class="glass rounded-xl p-6 h-full flex flex-col justify-between"
+          >
+            <div>
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center text-xl font-bold mb-3"
+              >
+                3
+              </div>
+              <h2 class="text-xl font-bold mb-2">Lesson 3</h2>
+              <p class="text-slate-400 text-sm">
+                Global Challenges and Solutions
+              </p>
+            </div>
+            <div
+              class="mt-4 flex items-center text-cyan-300 text-sm font-semibold"
+            >
+              Start Exam <span class="ml-2">→</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="h-16"></div>
+  </body>
+</html>
