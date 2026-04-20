@@ -188,182 +188,182 @@
           id: 1,
           part: 1,
           text: "The category of countries characterized by developed economies and high standards of living.",
-          answer: "Global North",
+          answer: ["Global North"],
         },
         {
           id: 2,
           part: 1,
           text: "Developing countries with lower income, limited industrialization, and significant economic challenges.",
-          answer: "Global South",
+          answer: ["Global South"],
         },
         {
           id: 3,
           part: 1,
           text: "The formation of regions based on shared characteristics and cooperation within a specific geographic area.",
-          answer: "Regionalism",
+          answer: ["Regionalism"],
         },
         {
           id: 4,
           part: 1,
           text: "The concept that regions are grouped based on common traits like geography, culture, economy, or politics.",
-          answer: "Region",
+          answer: ["Region"],
         },
         {
           id: 5,
           part: 1,
           text: "The specific term for the regional concentration of economic flows.",
-          answer: "Regionalization",
+          answer: ["Regionalization"],
         },
         {
           id: 6,
           part: 1,
           text: "A political process characterized by policy coordination and cooperation among countries.",
-          answer: "Regionalism",
+          answer: ["Regionalism"],
         },
         {
           id: 7,
           part: 1,
           text: "An example of a military alliance formed for the purpose of defense and security.",
-          answer: "NATO",
+          answer: ["NATO"],
         },
         {
           id: 8,
           part: 1,
           text: "An organization mentioned in the notes as an example of countries pooling resources for economic cooperation.",
-          answer: "OPEC",
+          answer: ["OPEC"],
         },
         {
           id: 9,
           part: 1,
           text: "A movement (abbreviated) aimed at protecting a country's independence from the pressures of superpower politics.",
-          answer: "NAM (Non-Aligned Movement)",
+          answer: ["NAM (Non-Aligned Movement)"],
         },
         {
           id: 10,
           part: 1,
           text: "Also known as 'new regionalism,' this involves cooperation that is not led by governments.",
-          answer: "Non-state regionalism",
+          answer: ["Non-state regionalism"],
         },
         {
           id: 11,
           part: 1,
           text: "These are associations that form based on common motivations regardless of their geographic proximity.",
-          answer: "Issue-based associations",
+          answer: ["Issue-based associations"],
         },
         {
           id: 12,
           part: 1,
           text: "A political approach that divides people into 'pure people' versus the 'corrupt elite.'",
-          answer: "Populism",
+          answer: ["Populism"],
         },
         {
           id: 13,
           part: 1,
           text: "A specific challenge to regionalism where countries prioritize their own national interests over collective cooperation.",
-          answer: "Militant Nationalism",
+          answer: ["Militant Nationalism"],
         },
         {
           id: 14,
           part: 1,
           text: "The historical event/term used to describe Britain's exit from the European Union due to economic implications.",
-          answer: "Brexit",
+          answer: ["Brexit"],
         },
         {
           id: 15,
           part: 1,
           text: "The tension that arises when a country must choose between protecting its own national authority and maintaining regional peace.",
-          answer: "Sovereignty vs. Regional Stability",
+          answer: ["Sovereignty vs. Regional Stability"],
         },
         {
           id: 16,
           part: 1,
           text: "The specific territorial dispute mentioned as an example of sovereignty vs. regional stability.",
-          answer: "China and Philippines territorial dispute",
+          answer: ["China and Philippines territorial dispute"],
         },
         {
           id: 17,
           part: 1,
           text: "A country mentioned that may not favor democratic-style decision-making because it slows economic progress.",
-          answer: "Singapore / China / Russia",
+          answer: ["Singapore / China / Russia"],
         },
         {
           id: 18,
           part: 1,
           text: "Non-state regional groups that focus on specific issues like climate change or human rights.",
-          answer: "Specialized causes",
+          answer: ["Specialized causes"],
         },
         {
           id: 19,
           part: 1,
           text: "Non-state regional groups that focus on broader concerns like development or global cooperation.",
-          answer: "General causes",
+          answer: ["General causes"],
         },
         {
           id: 20,
           part: 1,
           text: "The type of decision-making style that some authoritarian-leaning states avoid in favor of faster economic progress.",
-          answer: "Democratic-style",
+          answer: ["Democratic-style"],
         },
         // Part 2 (21-30)
         {
           id: 21,
           part: 2,
           text: "The division between the Global North and South reflects inequality in wealth, ___ and access to resources.",
-          answer: "power",
+          answer: ["power"],
         },
         {
           id: 22,
           part: 2,
           text: "Forming regionalism is not a 'natural process' but is inspired by ___ issues.",
-          answer: "social",
+          answer: ["social"],
         },
         {
           id: 23,
           part: 2,
           text: "One reason to form regions is to ___ economic crises, similar to how the IMF interacts with ASEAN.",
-          answer: "mitigate",
+          answer: ["mitigate"],
         },
         {
           id: 24,
           part: 2,
           text: "Non-state regionalism is often ___ in scale compared to established alliances created before them.",
-          answer: "smaller / tiny",
+          answer: ["smaller", "tiny", "smaller / tiny"],
         },
         {
           id: 25,
           part: 2,
           text: "Unlike government-led alliances, non-state regionalism may have a relatively ___ budget source.",
-          answer: "difficult",
+          answer: ["difficult"],
         },
         {
           id: 26,
           part: 2,
           text: "Resurgence of militant ___ and populism is a major contemporary challenge to regional cooperation.",
-          answer: "nationalism",
+          answer: ["nationalism"],
         },
         {
           id: 27,
           part: 2,
           text: "Populism is described as an ___ approach that divides the people from the elite.",
-          answer: "antagonistic",
+          answer: ["antagonistic"],
         },
         {
           id: 28,
           part: 2,
           text: "Regarding the China-Philippine dispute, fellow ASEAN members preferred ___ over confrontation.",
-          answer: "diplomacy",
+          answer: ["diplomacy"],
         },
         {
           id: 29,
           part: 2,
           text: "___ affects the level of trust and cooperation among member countries in a region.",
-          answer: "Instability",
+          answer: ["Instability"],
         },
         {
           id: 30,
           part: 2,
           text: "Countries have differing ___ of how regionalism should work, leading to conflict in decision-making styles.",
-          answer: "visions",
+          answer: ["visions"],
         },
       ];
 
@@ -375,16 +375,23 @@
           .replace(/\s+/g, " ");
       }
 
+      function getAnswers(answer) {
+        return Array.isArray(answer) ? answer : [answer];
+      }
+
       function isCorrect(userAnswer, correctAnswer) {
+        const answers = getAnswers(correctAnswer);
         const u = normalize(userAnswer);
-        const c = normalize(correctAnswer);
-        if (u === c) return true;
-        // Flexible: check if answer contains the key term
-        const tokens = c.split(" ");
-        const keyTokens = tokens.filter((t) => t.length > 3);
-        if (keyTokens.length === 0) return false;
-        const matchCount = keyTokens.filter((t) => u.includes(t)).length;
-        return matchCount >= Math.ceil(keyTokens.length * 0.7);
+        return answers.some((correctAns) => {
+          const c = normalize(correctAns);
+          if (u === c) return true;
+          // Flexible: check if answer contains the key term
+          const tokens = c.split(" ");
+          const keyTokens = tokens.filter((t) => t.length > 3);
+          if (keyTokens.length === 0) return false;
+          const matchCount = keyTokens.filter((t) => u.includes(t)).length;
+          return matchCount >= Math.ceil(keyTokens.length * 0.7);
+        });
       }
 
       function buildCards() {
@@ -425,7 +432,7 @@
                 <div id="feedback-${q.id}" class="hidden text-lg"></div>
               </div>
               <div id="correct-ans-${q.id}" class="hidden mt-2 text-xs px-3 py-1.5 rounded-lg bg-sky-900/30 border border-sky-500/20 text-sky-300">
-                <span class="text-sky-500 font-semibold">Answer:</span> ${q.answer}
+                <span class="text-sky-500 font-semibold">Answer${Array.isArray(q.answer) ? 's' : ''}:</span> ${Array.isArray(q.answer) ? q.answer.join(' / ') : q.answer}
               </div>
             </div>
           </div>
@@ -451,7 +458,7 @@
                 />${after}<span id="feedback-${q.id}" class="hidden text-base ml-1"></span>
               </p>
               <div id="correct-ans-${q.id}" class="hidden mt-2 text-xs px-3 py-1.5 rounded-lg bg-sky-900/30 border border-sky-500/20 text-sky-300">
-                <span class="text-sky-500 font-semibold">Answer:</span> ${q.answer}
+                <span class="text-sky-500 font-semibold">Answer${Array.isArray(q.answer) ? 's' : ''}:</span> ${Array.isArray(q.answer) ? q.answer.join(' / ') : q.answer}
               </div>
             </div>
           </div>
@@ -542,7 +549,8 @@
           if (!inp) return;
           inp.classList.remove("correct", "wrong");
           inp.classList.add("revealed");
-          inp.value = q.answer;
+          const answers = getAnswers(q.answer);
+          inp.value = answers[0];
           fb.classList.remove("hidden");
           fb.textContent = "💡";
           ca.classList.add("hidden");
